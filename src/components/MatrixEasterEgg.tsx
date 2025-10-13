@@ -1,0 +1,86 @@
+'use client';
+
+import { useEffect, useState, useRef } from 'react';
+import MatrixRain from './MatrixRain';
+import MatrixAudio from './MatrixAudio';
+import MatrixCursor from './MatrixCursor';
+
+interface MatrixEasterEggProps {
+  children: React.ReactNode;
+}
+
+export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
+  const [isMatrixMode, setIsMatrixMode] = useState(false);
+  const [keySequence, setKeySequence] = useState('');
+  const logoClickCount = useRef(0);
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const newSequence = keySequence + e.key.toLowerCase();
+      setKeySequence(newSequence.slice(-5));
+
+      if (newSequence.includes('idkfa')) {
+        setIsMatrixMode(true);
+        setKeySequence('');
+      }
+    };
+
+    const handleLogoClick = () => {
+      logoClickCount.current++;
+      if (logoClickCount.current >= 3) {
+        setIsMatrixMode(true);
+        logoClickCount.current = 0;
+      }
+
+      setTimeout(() => {
+        logoClickCount.current = 0;
+      }, 2000);
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    const logo = document.querySelector('[data-logo]');
+    if (logo) {
+      logo.addEventListener('click', handleLogoClick);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+      if (logo) {
+        logo.removeEventListener('click', handleLogoClick);
+      }
+    };
+  }, [keySequence]);
+
+  useEffect(() => {
+    if (isMatrixMode) {
+      document.body.style.overflow = 'hidden';
+
+      const timer = setTimeout(() => {
+        setIsMatrixMode(false);
+        document.body.style.overflow = '';
+      }, 10000);
+
+      return () => {
+        clearTimeout(timer);
+        document.body.style.overflow = '';
+      };
+    }
+  }, [isMatrixMode]);
+
+  return (
+    <>
+      {children}
+      <MatrixRain isActive={isMatrixMode} />
+      <MatrixAudio isActive={isMatrixMode} />
+      <MatrixCursor isActive={isMatrixMode} />
+      {isMatrixMode && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="text-green-400 font-mono text-2xl animate-pulse">
+            Welcome to the Matrix...
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

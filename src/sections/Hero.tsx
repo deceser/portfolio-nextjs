@@ -9,7 +9,7 @@ export function Hero() {
 
       <Container>
         <MotionFade>
-          <div className="glass-card p-12 max-w-4xl mx-auto">
+          <div className="glass-card p-12 max-w-6xl mx-auto">
             <h1 className="text-5xl font-bold tracking-tight sm:text-7xl gradient-text">
               Денис Каредиска
             </h1>
