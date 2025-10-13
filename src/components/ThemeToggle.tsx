@@ -3,26 +3,19 @@ import { useTheme } from '@/lib/theme';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const base = 'rounded-md px-2.5 py-1 text-sm transition border hover:opacity-90';
-  const styleFor = (active: boolean): React.CSSProperties =>
-    active
-      ? { background: 'var(--color-accent)', color: '#fff', borderColor: 'transparent' }
-      : {
-          background: 'var(--color-card)',
-          color: 'var(--color-fg)',
-          borderColor: 'var(--color-border)',
-        };
 
   return (
-    // Замените блок ниже на свой UI (иконки/тумблер), сохранив вызовы setTheme
-    <div className="inline-flex items-center gap-1">
+    <div className="glass-card p-1 inline-flex items-center gap-1 liquid-button bg-none">
       <button
         aria-label="System theme"
         type="button"
         aria-pressed={theme === 'system'}
         onClick={() => setTheme('system')}
-        className={base}
-        style={styleFor(theme === 'system')}
+        className={`px-3 py-1.5 text-sm font-medium rounded-liquid transition-all duration-300 ${
+          theme === 'system'
+            ? 'bg-gradient-accent text-accent-solid shadow-liquid'
+            : 'text-muted hover:text-fg hover:bg-glass-border'
+        }`}
       >
         System
       </button>
@@ -31,8 +24,11 @@ export function ThemeToggle() {
         type="button"
         aria-pressed={theme === 'light'}
         onClick={() => setTheme('light')}
-        className={base}
-        style={styleFor(theme === 'light')}
+        className={`px-3 py-1.5 text-sm font-medium rounded-liquid transition-all duration-300 ${
+          theme === 'light'
+            ? 'bg-gradient-accent text-accent-solid shadow-liquid'
+            : 'text-muted hover:text-fg hover:bg-glass-border'
+        }`}
       >
         Light
       </button>
@@ -41,8 +37,11 @@ export function ThemeToggle() {
         type="button"
         aria-pressed={theme === 'dark'}
         onClick={() => setTheme('dark')}
-        className={base}
-        style={styleFor(theme === 'dark')}
+        className={`px-3 py-1.5 text-sm font-medium rounded-liquid transition-all duration-300 ${
+          theme === 'dark'
+            ? 'bg-gradient-accent text-accent-solid shadow-liquid'
+            : 'text-muted hover:text-fg hover:bg-glass-border'
+        }`}
       >
         Dark
       </button>

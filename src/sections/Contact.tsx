@@ -1,57 +1,61 @@
 'use client';
 import { Container } from '@/components/Container';
 import { MotionFade } from '@/components/MotionFade';
+import { LiquidBackground } from '@/components/LiquidBackground';
 
 export function Contact() {
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-24 relative">
+      <LiquidBackground className="opacity-40" />
       <Container>
         <MotionFade>
-          <h2 className="text-2xl font-semibold tracking-tight">Контакты</h2>
-          <p className="mt-2 text-muted">/* TODO: Настроить контактную форму */</p>
-          <form onSubmit={(e) => e.preventDefault()} className="mt-8 max-w-xl space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm">
-                Имя
-              </label>
-              <input
-                id="name"
-                required
-                className="mt-1 w-full rounded-md border border-border bg-card px-3 py-2 outline-none transition placeholder:text-muted focus:border-fg/40"
-                placeholder="Ваше имя"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm">
-                Email
-              </label>
-              <input
-                id="email"
-                required
-                type="email"
-                className="mt-1 w-full rounded-md border border-border bg-card px-3 py-2 outline-none transition placeholder:text-muted focus:border-fg/40"
-                placeholder="you@example.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm">
-                Сообщение
-              </label>
-              <textarea
-                id="message"
-                required
-                rows={5}
-                className="mt-1 w-full rounded-md border border-border bg-card px-3 py-2 outline-none transition placeholder:text-muted focus:border-fg/40"
-                placeholder="Текст сообщения"
-              />
-            </div>
-            <button
-              aria-label="Отправить"
-              className="rounded-md bg-accent px-5 py-2 text-white shadow hover:opacity-90"
-            >
-              Отправить
-            </button>
-          </form>
+          <div className="glass-card p-12 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Контакты</h2>
+            <p className="text-lg text-muted mb-8">
+              Свяжитесь со мной для обсуждения вашего проекта
+            </p>
+
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Имя
+                </label>
+                <input
+                  id="name"
+                  required
+                  className="w-full rounded-liquid border border-glass-border bg-glass px-4 py-3 outline-none transition-all duration-300 placeholder:text-muted focus:border-accent focus:bg-card backdrop-blur-sm"
+                  placeholder="Ваше имя"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  required
+                  type="email"
+                  className="w-full rounded-liquid border border-glass-border bg-glass px-4 py-3 outline-none transition-all duration-300 placeholder:text-muted focus:border-accent focus:bg-card backdrop-blur-sm"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Сообщение
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={5}
+                  className="w-full rounded-liquid border border-glass-border bg-glass px-4 py-3 outline-none transition-all duration-300 placeholder:text-muted focus:border-accent focus:bg-card backdrop-blur-sm resize-none"
+                  placeholder="Текст сообщения"
+                />
+              </div>
+              <button type="submit" className="liquid-button w-full py-4 text-lg font-semibold">
+                Отправить сообщение
+              </button>
+            </form>
+          </div>
         </MotionFade>
       </Container>
     </section>
