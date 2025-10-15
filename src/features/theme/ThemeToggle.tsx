@@ -1,8 +1,9 @@
 'use client';
-import { useTheme } from '@/shared/config/theme';
+import { useUIStore } from '@/stores/ui';
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const theme = useUIStore((s) => s.theme);
+  const setTheme = useUIStore((s) => s.setTheme);
 
   return (
     <div className="glass-card p-1 inline-flex items-center gap-1 liquid-button bg-none">

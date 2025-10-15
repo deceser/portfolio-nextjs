@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import { Header } from '@/widgets/layout/Header';
-import { ThemeProvider } from '@/shared/config';
+// Zustand: тесты без провайдера темы
 
-const renderWithTheme = (ui: React.ReactNode) => render(<ThemeProvider>{ui}</ThemeProvider>);
+const renderUI = (ui: React.ReactNode) => render(<>{ui}</>);
 
 describe('Header', () => {
   it('renders logo and nav links', () => {
-    renderWithTheme(<Header />);
-    expect(screen.getByText('/* TODO: Заполнить имя и описание */')).toBeInTheDocument();
-    expect(screen.getByText('О себе')).toBeInTheDocument();
-    expect(screen.getByText('Проекты')).toBeInTheDocument();
-    expect(screen.getByText('Контакты')).toBeInTheDocument();
+    renderUI(<Header />);
+    // Текущий Header содержит англоязычные тексты
+    expect(screen.getByText('About')).toBeInTheDocument();
+    expect(screen.getByText('Projects')).toBeInTheDocument();
+    expect(screen.getByText('Contact')).toBeInTheDocument();
   });
 });

@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useUIStore } from '@/stores/ui';
 
-interface MatrixRainProps {
-  isActive: boolean;
-}
-
-export default function MatrixRain({ isActive }: MatrixRainProps) {
+export default function MatrixRain() {
+  const isActive = useUIStore((s) => s.modal === 'matrix');
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

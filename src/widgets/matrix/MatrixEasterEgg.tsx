@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useUIStore } from '@/stores/ui';
 import MatrixRain from '@/widgets/matrix/MatrixRain';
 import MatrixAudio from '@/widgets/matrix/MatrixAudio';
 import MatrixCursor from '@/widgets/matrix/MatrixCursor';
@@ -10,7 +11,9 @@ interface MatrixEasterEggProps {
 }
 
 export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
-  const [isMatrixMode, setIsMatrixMode] = useState(false);
+  const isMatrixMode = useUIStore((s) => s.modal === 'matrix');
+  const openModal = useUIStore((s) => s.openModal);
+  const closeModal = useUIStore((s) => s.closeModal);
   const [keySequence, setKeySequence] = useState('');
   const logoClickCount = useRef(0);
 
@@ -20,7 +23,7 @@ export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
       setKeySequence(newSequence.slice(-5));
 
       if (newSequence.includes('idkfa')) {
-        setIsMatrixMode(true);
+        openModal('matrix');
         setKeySequence('');
       }
     };
@@ -28,7 +31,7 @@ export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
     const handleLogoClick = () => {
       logoClickCount.current++;
       if (logoClickCount.current >= 3) {
-        setIsMatrixMode(true);
+        openModal('matrix');
         logoClickCount.current = 0;
       }
 
@@ -57,7 +60,7 @@ export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
       document.body.style.overflow = 'hidden';
 
       const timer = setTimeout(() => {
-        setIsMatrixMode(false);
+        closeModal();
         document.body.style.overflow = '';
       }, 10000);
 
@@ -71,9 +74,9 @@ export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
   return (
     <>
       {children}
-      <MatrixRain isActive={isMatrixMode} />
-      <MatrixAudio isActive={isMatrixMode} />
-      <MatrixCursor isActive={isMatrixMode} />
+      <MatrixRain />
+      <MatrixAudio />
+      <MatrixCursor />
       {isMatrixMode && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="text-green-400 font-mono text-2xl animate-pulse">

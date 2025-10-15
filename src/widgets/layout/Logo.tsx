@@ -15,7 +15,7 @@ export function Logo() {
         />
       </button>
       <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-3 opacity-0 transition-opacity text-xs glass-card px-2 py-1 whitespace-nowrap peer-hover:opacity-100">
-        Нажми 3 раза — вход в Matrix на 10 секунд
+        Click 3 times — enter Matrix for 10 seconds
       </span>
     </div>
   );
