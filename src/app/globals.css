@@ -269,6 +269,33 @@
     .light .text-muted {
         color: oklch(0.5 0.08 220);
     }
+
+    /* Project card buttons */
+    .project-button {
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .project-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .project-button:hover::before {
+        left: 100%;
+    }
+
+    .project-button:hover {
+        transform: translateY(-1px);
+    }
 }
 
 /* Horizontal scroll styles */
