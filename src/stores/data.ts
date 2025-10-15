@@ -62,6 +62,9 @@ export const useDataStore = create<DataState>()(
         }
       },
     }),
-    { name: 'data-storage' },
+    {
+      name: 'data-storage',
+      partialize: (state) => ({ projects: state.projects, reviews: state.reviews }),
+    },
   ),
 );

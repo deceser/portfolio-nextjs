@@ -1,15 +1,9 @@
 'use client';
-import { useEffect } from 'react';
 import { useUIStore } from '@/stores/ui';
 
 export function ThemeToggle() {
   const theme = useUIStore((s) => s.theme);
   const setTheme = useUIStore((s) => s.setTheme);
-  // apply theme on mount from store (persist)
-  useEffect(() => {
-    setTheme(theme);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="glass-card p-1 inline-flex items-center gap-1 liquid-button bg-none">
