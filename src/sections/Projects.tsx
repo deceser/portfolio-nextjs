@@ -1,8 +1,21 @@
-import { Container, MotionFade, LiquidBackground } from '@/shared/ui';
+'use client';
+
+import { useEffect } from 'react';
+import { useDataStore } from '@/stores/data';
+
 import { ProjectCard3D } from '@/widgets/projects/ProjectCard3D';
-import { projects } from '@/shared/data';
+
+import { Container, MotionFade, LiquidBackground } from '@/shared/ui';
 
 export function Projects() {
+  const projects = useDataStore((s) => s.projects);
+  const loading = useDataStore((s) => s.loading);
+  const fetchProjects = useDataStore((s) => s.fetchProjects);
+
+  useEffect(() => {
+    if (projects.length === 0) fetchProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section id="projects" className="py-24 relative">
       <LiquidBackground className="opacity-30" />

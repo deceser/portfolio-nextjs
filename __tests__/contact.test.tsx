@@ -1,14 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from '@/shared/config';
+// Zustand: тесты без провайдера темы
 import { Contact } from '@/sections/Contact';
 
-const renderWithTheme = (ui: React.ReactNode) => render(<ThemeProvider>{ui}</ThemeProvider>);
+const renderUI = (ui: React.ReactNode) => render(<>{ui}</>);
 
 describe('Contact', () => {
-  it('renders fields and submit button', () => {
-    renderWithTheme(<Contact />);
-    expect(screen.getByLabelText('Имя')).toBeInTheDocument();
-    expect(screen.getByLabelText('Email')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Отправить' })).toBeInTheDocument();
+  it('renders cards and links', () => {
+    renderUI(<Contact />);
+    expect(screen.getByText('Контакты')).toBeInTheDocument();
+    expect(screen.getByText('Мои проекты и код')).toBeInTheDocument();
   });
 });

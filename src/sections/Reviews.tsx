@@ -1,45 +1,19 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useDataStore } from '@/stores/data';
+
 import { Container, MotionFade, LiquidBackground } from '@/shared/ui';
 
-const reviews = [
-  {
-    id: 1,
-    name: 'Anna Petrova',
-    position: 'Product Manager',
-    company: 'TechCorp',
-    text: 'Denis did an excellent job developing our web application. He quickly understands requirements and offers quality solutions.',
-    rating: 5,
-    url: 'https://www.upwork.com/freelancers/~example1',
-  },
-  {
-    id: 2,
-    name: 'Mikhail Ivanov',
-    position: 'CEO',
-    company: 'StartupXYZ',
-    text: 'Professional approach, attention to detail and excellent communication skills. I recommend him as a reliable developer.',
-    rating: 5,
-    url: 'https://www.upwork.com/freelancers/~example2',
-  },
-  {
-    id: 3,
-    name: 'Elena Smirnova',
-    position: 'Design Lead',
-    company: 'CreativeStudio',
-    text: 'Working with Denis was very productive. He quickly adapts to changes and always offers optimal solutions.',
-    rating: 5,
-    url: 'https://www.upwork.com/freelancers/~example3',
-  },
-  {
-    id: 4,
-    name: 'Alexey Kozlov',
-    position: 'CTO',
-    company: 'InnovateLab',
-    text: 'High code quality, meeting deadlines and excellent understanding of modern technologies. Very satisfied with the result.',
-    rating: 5,
-    url: 'https://www.upwork.com/freelancers/~example4',
-  },
-];
-
 export function Reviews() {
+  const reviews = useDataStore((s) => s.reviews);
+  const loading = useDataStore((s) => s.loading);
+  const fetchReviews = useDataStore((s) => s.fetchReviews);
+
+  useEffect(() => {
+    if (reviews.length === 0) fetchReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section id="reviews" className="py-24 relative">
       <LiquidBackground className="opacity-20" />

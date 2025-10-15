@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useUIStore } from '@/stores/ui';
 
-interface MatrixAudioProps {
-  isActive: boolean;
-}
-
-export default function MatrixAudio({ isActive }: MatrixAudioProps) {
+export default function MatrixAudio() {
+  const isActive = useUIStore((s) => s.modal === 'matrix');
   const audioContextRef = useRef<AudioContext | null>(null);
   const oscillatorRef = useRef<OscillatorNode | null>(null);
 

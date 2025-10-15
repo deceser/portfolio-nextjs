@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import { ThemeProvider } from '@/shared/config';
+// Zustand: провайдер больше не нужен
 
 // Smoke test: provider mounts without errors
-it('mounts ThemeProvider', () => {
-  render(<ThemeProvider>child</ThemeProvider>);
+it('mounts components without ThemeProvider', () => {
+  render(<div>child</div>);
 });

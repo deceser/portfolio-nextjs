@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useUIStore } from '@/stores/ui';
 
-interface MatrixCursorProps {
-  isActive: boolean;
-}
-
-export default function MatrixCursor({ isActive }: MatrixCursorProps) {
+export default function MatrixCursor() {
+  const isActive = useUIStore((s) => s.modal === 'matrix');
   useEffect(() => {
     if (!isActive) {
       document.body.style.cursor = '';
