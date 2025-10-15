@@ -30,7 +30,7 @@ class MockIntersectionObserver implements IntersectionObserver {
 }
 
 // Assign mocks to global/window
-// @ts-expect-error jsdom environment
+// @ts-ignore jsdom environment
 global.IntersectionObserver = MockIntersectionObserver as any;
-// @ts-expect-error jsdom environment
+// @ts-ignore jsdom environment
 window.IntersectionObserver = MockIntersectionObserver as any;
