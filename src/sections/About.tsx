@@ -8,8 +8,8 @@ export function About() {
       <LiquidBackground className="opacity-50" />
       <Container>
         <MotionFade>
-          <div className="glass-card p-12 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">About Me</h2>
+          <div className="glass-card p-12 max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">О себе</h2>
             <div className="space-y-6 text-lg text-muted leading-relaxed">
               <p>
                 I specialize in creating modern web applications using React, Next.js and

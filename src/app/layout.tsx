@@ -3,6 +3,10 @@ import './globals.css';
 import { ThemeProvider } from '@/lib/theme';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import MatrixEasterEgg from '@/components/MatrixEasterEgg';
+import MatrixRain from '@/components/MatrixRain';
+import MatrixAudio from '@/components/MatrixAudio';
+import MatrixCursor from '@/components/MatrixCursor';
 
 export const metadata: Metadata = {
   title: '/* TODO: Fill in name and description */',
@@ -19,11 +23,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "!function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),m=window.matchMedia('(prefers-color-scheme: dark)').matches;d.classList.remove('dark','light');d.removeAttribute('data-theme');if(t==='dark'||(!t&&m)||t==='system'&&m){d.classList.add('dark');d.setAttribute('data-theme','dark');d.style.colorScheme='dark'}else{d.classList.add('light');d.setAttribute('data-theme','light');d.style.colorScheme='light'}}catch(e){}}();",
           }}
         />
-        <ThemeProvider>
-          <Header />
-          <main className="pt-20">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <MatrixEasterEgg>
+          <ThemeProvider>
+            <Header />
+            <main className="pt-20">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </MatrixEasterEgg>
       </body>
     </html>
   );

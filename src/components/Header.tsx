@@ -7,7 +7,7 @@ export function Header() {
   return (
     <header className="glass-header fixed inset-x-0 top-0 z-50">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="#hero" className="text-base transition-transform hover:scale-105">
+        <Link href="#hero" className="text-base transition-transform hover:scale-105" data-logo>
           <Logo />
         </Link>
         <nav className="flex items-center gap-2">
