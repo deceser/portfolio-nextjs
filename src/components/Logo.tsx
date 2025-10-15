@@ -1,5 +1,22 @@
 export function Logo() {
   return (
-    <span className="font-semibold tracking-tight">/* TODO: Fill in name and description */</span>
+    <div className="relative">
+      <button
+        type="button"
+        data-logo
+        aria-label="Matrix trigger"
+        className="peer h-24 w-24 rounded-full overflow-hidden bg-transparent ring-0"
+      >
+        <img
+          src="/logo.png"
+          alt="Site icon"
+          className="h-full w-full object-contain  cursor-pointer"
+          draggable={false}
+        />
+      </button>
+      <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-3 opacity-0 transition-opacity text-xs glass-card px-2 py-1 whitespace-nowrap peer-hover:opacity-100">
+        Нажми 3 раза — вход в Matrix на 10 секунд
+      </span>
+    </div>
   );
 }
