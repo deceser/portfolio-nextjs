@@ -11,8 +11,8 @@ export function Projects() {
       <Container>
         <MotionFade>
           <div className="glass-card p-12 max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Портфолио</h2>
-            <p className="text-lg text-muted mb-12">Мои последние проекты и работы</p>
+            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Portfolio</h2>
+            <p className="text-lg text-muted mb-12">My latest projects and work</p>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((p) => (

@@ -15,19 +15,19 @@ export function Header() {
             href="#about"
             className="glass-card px-4 py-2 text-sm font-medium rounded-liquid transition-all duration-300 hover:bg-glass-border hover:text-accent"
           >
-            О себе
+            About
           </Link>
           <Link
             href="#projects"
             className="glass-card px-4 py-2 text-sm font-medium rounded-liquid transition-all duration-300 hover:bg-glass-border hover:text-accent"
           >
-            Проекты
+            Projects
           </Link>
           <Link
             href="#contact"
             className="glass-card px-4 py-2 text-sm font-medium rounded-liquid transition-all duration-300 hover:bg-glass-border hover:text-accent"
           >
-            Контакты
+            Contact
           </Link>
           <ThemeToggle />
         </nav>
