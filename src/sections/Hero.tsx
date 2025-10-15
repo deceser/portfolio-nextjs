@@ -1,11 +1,13 @@
 import { Container } from '@/components/Container';
 import { MotionFade } from '@/components/MotionFade';
 import { LiquidBackground } from '@/components/LiquidBackground';
+import { ParticleSystem } from '@/components/ParticleSystem';
 
 export function Hero() {
   return (
     <section id="hero" className="relative py-32 overflow-hidden">
       <LiquidBackground />
+      <ParticleSystem />
 
       <Container>
         <MotionFade>
