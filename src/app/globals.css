@@ -296,6 +296,17 @@
     .project-button:hover {
         transform: translateY(-1px);
     }
+
+    /* Particle system styles */
+    .particle-canvas {
+        mix-blend-mode: screen;
+        opacity: 0.6;
+    }
+
+    .dark .particle-canvas {
+        mix-blend-mode: screen;
+        opacity: 0.8;
+    }
 }
 
 /* Horizontal scroll styles */
