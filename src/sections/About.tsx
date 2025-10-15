@@ -9,32 +9,32 @@ export function About() {
       <Container>
         <MotionFade>
           <div className="glass-card p-12 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">О себе</h2>
+            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">About Me</h2>
             <div className="space-y-6 text-lg text-muted leading-relaxed">
               <p>
-                Я специализируюсь на создании современных веб-приложений с использованием React,
-                Next.js и TypeScript. Мой опыт включает разработку высокопроизводительных
-                пользовательских интерфейсов и интеграцию с различными API.
+                I specialize in creating modern web applications using React, Next.js and
+                TypeScript. My experience includes developing high-performance user interfaces and
+                integrating with various APIs.
               </p>
               <p>
-                Особое внимание уделяю доступности, производительности и современным стандартам
-                веб-разработки. Постоянно изучаю новые технологии и применяю их в проектах для
-                создания лучшего пользовательского опыта.
+                I pay special attention to accessibility, performance and modern standards of web
+                development. I constantly study new technologies and apply them in projects to
+                create better user experience.
               </p>
             </div>
 
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="glass-card p-6 text-center">
                 <div className="text-3xl font-bold gradient-text mb-2">3+</div>
-                <div className="text-muted">Года опыта</div>
+                <div className="text-muted">Years of Experience</div>
               </div>
               <div className="glass-card p-6 text-center">
                 <div className="text-3xl font-bold gradient-text mb-2">20+</div>
-                <div className="text-muted">Проектов</div>
+                <div className="text-muted">Projects</div>
               </div>
               <div className="glass-card p-6 text-center">
                 <div className="text-3xl font-bold gradient-text mb-2">100%</div>
-                <div className="text-muted">Качество</div>
+                <div className="text-muted">Quality</div>
               </div>
             </div>
           </div>

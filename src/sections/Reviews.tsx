@@ -5,37 +5,37 @@ import { LiquidBackground } from '@/components/LiquidBackground';
 const reviews = [
   {
     id: 1,
-    name: 'Анна Петрова',
+    name: 'Anna Petrova',
     position: 'Product Manager',
     company: 'TechCorp',
-    text: 'Денис отлично справился с разработкой нашего веб-приложения. Быстро понимает требования и предлагает качественные решения.',
+    text: 'Denis did an excellent job developing our web application. He quickly understands requirements and offers quality solutions.',
     rating: 5,
     url: 'https://www.upwork.com/freelancers/~example1',
   },
   {
     id: 2,
-    name: 'Михаил Иванов',
+    name: 'Mikhail Ivanov',
     position: 'CEO',
     company: 'StartupXYZ',
-    text: 'Профессиональный подход, внимательность к деталям и отличные навыки коммуникации. Рекомендую как надежного разработчика.',
+    text: 'Professional approach, attention to detail and excellent communication skills. I recommend him as a reliable developer.',
     rating: 5,
     url: 'https://www.upwork.com/freelancers/~example2',
   },
   {
     id: 3,
-    name: 'Елена Смирнова',
+    name: 'Elena Smirnova',
     position: 'Design Lead',
     company: 'CreativeStudio',
-    text: 'Работа с Денисом была очень продуктивной. Он быстро адаптируется к изменениям и всегда предлагает оптимальные решения.',
+    text: 'Working with Denis was very productive. He quickly adapts to changes and always offers optimal solutions.',
     rating: 5,
     url: 'https://www.upwork.com/freelancers/~example3',
   },
   {
     id: 4,
-    name: 'Алексей Козлов',
+    name: 'Alexey Kozlov',
     position: 'CTO',
     company: 'InnovateLab',
-    text: 'Высокое качество кода, соблюдение сроков и отличное понимание современных технологий. Очень довольны результатом.',
+    text: 'High code quality, meeting deadlines and excellent understanding of modern technologies. Very satisfied with the result.',
     rating: 5,
     url: 'https://www.upwork.com/freelancers/~example4',
   },
@@ -48,8 +48,8 @@ export function Reviews() {
       <Container>
         <MotionFade>
           <div className="glass-card p-12 max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Отзывы</h2>
-            <p className="text-lg text-muted mb-12">Что говорят клиенты о работе со мной</p>
+            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Reviews</h2>
+            <p className="text-lg text-muted mb-12">What clients say about working with me</p>
 
             <div className="relative">
               <div className="flex gap-6 overflow-hidden pb-4 scrollbar-hide">
@@ -80,7 +80,7 @@ export function Reviews() {
                       </div>
                     </a>
                   ))}
-                  {/* Дублируем карточки для бесшовной анимации */}
+                  {/* Duplicate cards for seamless animation */}
                   {reviews.map((review) => (
                     <a
                       key={`duplicate-${review.id}`}

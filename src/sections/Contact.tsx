@@ -10,21 +10,19 @@ export function Contact() {
       <Container>
         <MotionFade>
           <div className="glass-card p-12 max-w-2xl mx-auto">
-            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Контакты</h2>
-            <p className="text-lg text-muted mb-8">
-              Свяжитесь со мной для обсуждения вашего проекта
-            </p>
+            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Contact</h2>
+            <p className="text-lg text-muted mb-8">Get in touch with me to discuss your project</p>
 
             <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Имя
+                  Name
                 </label>
                 <input
                   id="name"
                   required
                   className="w-full rounded-liquid border border-glass-border bg-glass px-4 py-3 outline-none transition-all duration-300 placeholder:text-muted focus:border-accent focus:bg-card backdrop-blur-sm"
-                  placeholder="Ваше имя"
+                  placeholder="Your name"
                 />
               </div>
               <div>
@@ -41,18 +39,18 @@ export function Contact() {
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Сообщение
+                  Message
                 </label>
                 <textarea
                   id="message"
                   required
                   rows={5}
                   className="w-full rounded-liquid border border-glass-border bg-glass px-4 py-3 outline-none transition-all duration-300 placeholder:text-muted focus:border-accent focus:bg-card backdrop-blur-sm resize-none"
-                  placeholder="Текст сообщения"
+                  placeholder="Your message"
                 />
               </div>
               <button type="submit" className="liquid-button w-full py-4 text-lg font-semibold">
-                Отправить сообщение
+                Send Message
               </button>
             </form>
           </div>

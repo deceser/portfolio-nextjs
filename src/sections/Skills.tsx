@@ -20,8 +20,8 @@ export function Skills() {
       <Container>
         <MotionFade>
           <div className="glass-card p-12 max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Навыки</h2>
-            <p className="text-lg text-muted mb-12">Технологии и инструменты, которыми я владею</p>
+            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Skills</h2>
+            <p className="text-lg text-muted mb-12">Technologies and tools I work with</p>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {skills.map((skill) => (

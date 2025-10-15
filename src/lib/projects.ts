@@ -7,5 +7,5 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  // /* TODO: Добавить проекты */
+  // /* TODO: Add projects */
 ];
