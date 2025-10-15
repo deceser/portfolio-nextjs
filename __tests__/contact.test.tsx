@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from '@/lib/theme';
+import { ThemeProvider } from '@/shared/config';
 import { Contact } from '@/sections/Contact';
 
 const renderWithTheme = (ui: React.ReactNode) => render(<ThemeProvider>{ui}</ThemeProvider>);

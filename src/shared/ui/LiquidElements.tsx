@@ -27,6 +27,5 @@ export function LiquidBadge({ children, variant = 'primary' }: LiquidBadgeProps)
     variant === 'primary'
       ? 'bg-gradient-accent text-white'
       : 'glass-card text-fg border border-glass-border';
-
   return <span className={`${baseClasses} ${variantClasses}`}>{children}</span>;
 }

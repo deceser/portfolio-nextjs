@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Container } from '@/components/Container';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { Logo } from '@/components/Logo';
+import { Container } from '@/shared/ui/Container';
+import { ThemeToggle } from '@/features/theme';
+import { Logo } from '@/widgets/layout';
 
 export function Header() {
   return (

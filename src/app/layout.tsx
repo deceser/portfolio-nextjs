@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { ThemeProvider } from '@/lib/theme';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import MatrixEasterEgg from '@/components/MatrixEasterEgg';
-import { TitleAndFaviconController } from '@/components/TitleAndFaviconController';
+import { ThemeProvider } from '@/shared/config';
+import { Header, Footer } from '@/widgets/layout';
+import { MatrixEasterEgg } from '@/widgets/matrix';
+import { TitleAndFaviconController } from '@/controllers/TitleAndFaviconController';
 
 export const metadata: Metadata = {
   title: 'Denys Bezverkhyi',

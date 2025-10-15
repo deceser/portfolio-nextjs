@@ -2,9 +2,9 @@ export type Project = {
   id: string;
   title: string;
   description: string;
-  image: string; // public path or remote loader
-  href?: string; // ссылка на проект
-  github?: string; // ссылка на GitHub
+  image: string;
+  href?: string;
+  github?: string;
 };
 
 export const projects: Project[] = [

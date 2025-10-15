@@ -32,14 +32,12 @@ const applyTheme = (theme: Theme) => {
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('system');
 
-  // On mount: hydrate from localStorage and apply immediately
   useEffect(() => {
     const saved = (localStorage.getItem('theme') as Theme | null) ?? 'system';
     setThemeState(saved);
     applyTheme(saved);
   }, []);
 
-  // Listen to system changes only when theme==="system"
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mq = window.matchMedia('(prefers-color-scheme: dark)');

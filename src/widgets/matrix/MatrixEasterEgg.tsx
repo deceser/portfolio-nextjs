@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import MatrixRain from './MatrixRain';
-import MatrixAudio from './MatrixAudio';
-import MatrixCursor from './MatrixCursor';
+import MatrixRain from '@/widgets/matrix/MatrixRain';
+import MatrixAudio from '@/widgets/matrix/MatrixAudio';
+import MatrixCursor from '@/widgets/matrix/MatrixCursor';
 
 interface MatrixEasterEggProps {
   children: React.ReactNode;

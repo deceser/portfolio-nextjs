@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Header } from '@/components/Header';
-import { ThemeProvider } from '@/lib/theme';
+import { Header } from '@/widgets/layout/Header';
+import { ThemeProvider } from '@/shared/config';
 
 const renderWithTheme = (ui: React.ReactNode) => render(<ThemeProvider>{ui}</ThemeProvider>);
 

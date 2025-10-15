@@ -18,8 +18,6 @@ function getCurrentSectionId(): SectionId | null {
   return null;
 }
 
-// Favicon progress ring was removed by request.
-
 export function TitleAndFaviconController() {
   useEffect(() => {
     const lastSectionRef = { current: '' as string };
@@ -58,9 +56,6 @@ export function TitleAndFaviconController() {
         document.title = nextBaseTitle;
       }
 
-      // favicon progress drawing removed
-
-      // Update URL hash without pushing history entries
       const nextHash = section ? `#${section}` : '';
       if (lastSectionRef.current !== nextHash) {
         lastSectionRef.current = nextHash;

@@ -1,8 +1,6 @@
-import { Container } from '@/components/Container';
-import { MotionFade } from '@/components/MotionFade';
-import { LiquidBackground } from '@/components/LiquidBackground';
-import { ProjectCard3D } from '@/components/ProjectCard3D';
-import { projects } from '@/lib/projects';
+import { Container, MotionFade, LiquidBackground } from '@/shared/ui';
+import { ProjectCard3D } from '@/widgets/projects/ProjectCard3D';
+import { projects } from '@/shared/data';
 
 export function Projects() {
   return (

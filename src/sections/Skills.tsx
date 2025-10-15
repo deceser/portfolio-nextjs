@@ -1,6 +1,4 @@
-import { Container } from '@/components/Container';
-import { MotionFade } from '@/components/MotionFade';
-import { LiquidBackground } from '@/components/LiquidBackground';
+import { Container, MotionFade, LiquidBackground } from '@/shared/ui';
 
 const skills = [
   { name: 'React', level: 95 },

@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ExternalLinkIcon } from '@/components/ExternalLinkIcon';
-import { GitHubIcon } from '@/components/GitHubIcon';
-import type { Project } from '@/lib/projects';
+import { ExternalLinkIcon } from '@/shared/icons/ExternalLinkIcon';
+import { GitHubIcon } from '@/shared/icons/GitHubIcon';
+import type { Project } from '@/shared/data/projects';
 
 interface ProjectCard3DProps {
   project: Project;
@@ -86,7 +86,6 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
         whileHover={{ scale: 1.02 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
-        {/* Изображение проекта */}
         <motion.div
           className="relative aspect-[16/10] w-full overflow-hidden"
           style={{ transform: 'translateZ(30px)' }}
@@ -105,36 +104,20 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
             style={{ transform: 'translateZ(40px)' }}
           />
 
-          {/* Анимированные частицы */}
           <motion.div
             className="absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full"
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.6, 1, 0.6],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              delay: 0.5,
-            }}
+            animate={{ scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
             style={{ transform: 'translateZ(50px)' }}
           />
           <motion.div
             className="absolute bottom-4 left-4 w-1 h-1 bg-white/40 rounded-full"
-            animate={{
-              scale: [1, 2, 1],
-              opacity: [0.4, 0.8, 0.4],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: 1,
-            }}
+            animate={{ scale: [1, 2, 1], opacity: [0.4, 0.8, 0.4] }}
+            transition={{ duration: 3, repeat: Infinity, delay: 1 }}
             style={{ transform: 'translateZ(50px)' }}
           />
         </motion.div>
 
-        {/* Контент карточки */}
         <motion.div className="p-6 relative" style={{ transform: 'translateZ(20px)' }}>
           <motion.h3
             className="font-semibold text-lg mb-2"
@@ -153,15 +136,11 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
             {project.description}
           </motion.p>
 
-          {/* Кнопки */}
           <motion.div
             className="flex gap-3"
             style={{ transform: 'translateZ(15px)' }}
             initial={{ y: 20, opacity: 0 }}
-            animate={{
-              y: isHovered ? 0 : 20,
-              opacity: isHovered ? 1 : 0,
-            }}
+            animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
             transition={{
               duration: 0.3,
               delay: isHovered ? 0.1 : 0,
@@ -201,13 +180,10 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
           </motion.div>
         </motion.div>
 
-        {/* Дополнительные 3D эффекты */}
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{ transform: 'translateZ(50px)' }}
         />
-
-        {/* Световые эффекты */}
         <motion.div
           className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{ transform: 'translateZ(60px)' }}
