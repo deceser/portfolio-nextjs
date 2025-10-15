@@ -4,13 +4,17 @@ import { ThemeProvider } from '@/lib/theme';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import MatrixEasterEgg from '@/components/MatrixEasterEgg';
-import MatrixRain from '@/components/MatrixRain';
-import MatrixAudio from '@/components/MatrixAudio';
-import MatrixCursor from '@/components/MatrixCursor';
+import { TitleAndFaviconController } from '@/components/TitleAndFaviconController';
 
 export const metadata: Metadata = {
-  title: '/* TODO: Fill in name and description */',
-  description: '/* TODO: Fill in name and description */',
+  title: 'Denys Bezverkhyi',
+  description:
+    'Frontend developer creating modern web applications with focus on user experience and performance',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -25,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <MatrixEasterEgg>
           <ThemeProvider>
+            <TitleAndFaviconController />
             <Header />
             <main className="pt-20">{children}</main>
             <Footer />
