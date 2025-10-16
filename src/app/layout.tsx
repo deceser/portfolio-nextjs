@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Header, Footer } from '@/widgets/layout';
+import { Header, Footer, MainWrapper } from '@/widgets/layout';
 import { MatrixEasterEgg } from '@/widgets/matrix';
 import { TitleAndFaviconController } from '@/controllers/TitleAndFaviconController';
 import { ThemeEffect } from '../features/theme';
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <MatrixEasterEgg>
           <TitleAndFaviconController />
           <Header />
-          <main className="pt-20">{children}</main>
+          <MainWrapper>{children}</MainWrapper>
           <Footer />
         </MatrixEasterEgg>
       </body>

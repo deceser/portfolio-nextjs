@@ -17,17 +17,37 @@ export function Projects() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <section id="projects" className="py-24 relative">
+    <section id="projects" className="py-8 md:py-20 xl:py-24 relative">
       <LiquidBackground className="opacity-30" />
       <Container>
         <MotionFade>
-          <div className="glass-card p-12 max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold tracking-tight gradient-text mb-8">Portfolio</h2>
-            <p className="text-lg text-muted mb-12">My latest projects and work</p>
+          <div className="glass-card p-6 sm:p-8 md:p-10 xl:p-12 max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight gradient-text mb-6 md:mb-8">
+              Portfolio
+            </h2>
+            <p className="text-base md:text-lg text-muted mb-8 md:mb-12">
+              My latest projects and work
+            </p>
 
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project) => (
-                <ProjectCard3D key={project.id} project={project} />
+            <div
+              id="stacking-cards-container"
+              className="scrollbar-hide md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0"
+            >
+              {projects.map((project, index) => (
+                <div
+                  key={project.id}
+                  className="stacking-card-wrapper md:w-auto"
+                  style={
+                    {
+                      '--index': index + 1,
+                      '--reverse-index': projects.length - index,
+                    } as React.CSSProperties
+                  }
+                >
+                  <div className="stacking-card-content">
+                    <ProjectCard3D project={project} />
+                  </div>
+                </div>
               ))}
             </div>
           </div>
