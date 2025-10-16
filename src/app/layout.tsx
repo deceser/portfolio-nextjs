@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "!function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),m=window.matchMedia('(prefers-color-scheme: dark)').matches;d.classList.remove('dark','light');d.removeAttribute('data-theme');if(t==='dark'||(!t&&m)||t==='system'&&m){d.classList.add('dark');d.setAttribute('data-theme','dark');d.style.colorScheme='dark'}else{d.classList.add('light');d.setAttribute('data-theme','light');d.style.colorScheme='light'}}catch(e){}}();",
+              "!function(){try{var d=document.documentElement,s=localStorage.getItem('ui-storage'),t='system';if(s){var p=JSON.parse(s);t=p.state?.theme||'system'}var m=window.matchMedia('(prefers-color-scheme: dark)').matches;d.classList.remove('dark','light');d.removeAttribute('data-theme');if(t==='dark'||(t==='system'&&m)){d.classList.add('dark');d.setAttribute('data-theme','dark');d.style.colorScheme='dark'}else{d.classList.add('light');d.setAttribute('data-theme','light');d.style.colorScheme='light'}}catch(e){}}();",
           }}
         />
         <ThemeEffect />

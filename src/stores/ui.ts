@@ -46,6 +46,11 @@ export const useUIStore = create<UIState>()(
       openModal: (id) => set({ modal: id }),
       closeModal: () => set({ modal: null }),
     }),
-    { name: 'ui-storage' },
+    {
+      name: 'ui-storage',
+      onRehydrateStorage: () => (state) => {
+        if (state) applyTheme(state.theme);
+      },
+    },
   ),
 );
