@@ -6,8 +6,11 @@ type UIState = {
   theme: 'system' | 'light' | 'dark';
   modal: string | null;
   sidebarOpen: boolean;
+  mobileMenuOpen: boolean;
   setTheme: (t: UIState['theme']) => void;
   toggleSidebar: () => void;
+  toggleMobileMenu: () => void;
+  setMobileMenuOpen: (open: boolean) => void;
   openModal: (id: string) => void;
   closeModal: () => void;
 };
@@ -38,16 +41,24 @@ export const useUIStore = create<UIState>()(
       theme: 'system',
       modal: null,
       sidebarOpen: false,
+      mobileMenuOpen: false,
       setTheme: (t) => {
         set({ theme: t });
         applyTheme(t);
       },
       toggleSidebar: () => set({ sidebarOpen: !get().sidebarOpen }),
+      toggleMobileMenu: () => set({ mobileMenuOpen: !get().mobileMenuOpen }),
+      setMobileMenuOpen: (open) => set({ mobileMenuOpen: open }),
       openModal: (id) => set({ modal: id }),
       closeModal: () => set({ modal: null }),
     }),
     {
       name: 'ui-storage',
+      partialize: (state) => ({
+        theme: state.theme,
+        modal: state.modal,
+        sidebarOpen: state.sidebarOpen,
+      }),
       onRehydrateStorage: () => (state) => {
         if (state) applyTheme(state.theme);
       },

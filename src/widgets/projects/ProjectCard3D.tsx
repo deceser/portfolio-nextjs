@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLinkIcon } from '@/shared/icons/ExternalLinkIcon';
@@ -15,6 +15,11 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -26,7 +31,7 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
   const rotateY = useTransform(springX, [-100, 100], [-15, 15]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isTouchDevice) return;
 
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -52,12 +57,8 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
   };
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (!isTouchDevice) setIsHovered(true);
   };
-
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const rotateXValue = isHovered && !isMobile ? mousePosition.y : 0;
-  const rotateYValue = isHovered && !isMobile ? mousePosition.x : 0;
 
   return (
     <motion.div
@@ -67,7 +68,7 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
-        perspective: typeof window !== 'undefined' && window.innerWidth < 768 ? 'none' : '1000px',
+        perspective: isTouchDevice ? 'none' : '1000px',
       }}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -75,15 +76,15 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <motion.div
-        className="glass-card-3d overflow-hidden transition-all duration-500 ease-out"
+        className={`glass-card-3d overflow-hidden transition-all duration-500 ease-out ${isTouchDevice ? 'shadow-none' : ''}`}
         style={{
-          x: springX,
-          y: springY,
-          rotateX: isHovered ? rotateX : 0,
-          rotateY: isHovered ? rotateY : 0,
-          transformStyle: 'preserve-3d',
+          x: isTouchDevice ? 0 : springX,
+          y: isTouchDevice ? 0 : springY,
+          rotateX: isHovered && !isTouchDevice ? rotateX : 0,
+          rotateY: isHovered && !isTouchDevice ? rotateY : 0,
+          transformStyle: isTouchDevice ? 'flat' : 'preserve-3d',
         }}
-        whileHover={{ scale: 1.02 }}
+        whileHover={isTouchDevice ? {} : { scale: 1.02 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
         <motion.div
@@ -118,18 +119,21 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
           />
         </motion.div>
 
-        <motion.div className="p-6 relative" style={{ transform: 'translateZ(20px)' }}>
+        <motion.div
+          className="p-4 md:p-6 relative"
+          style={{ transform: isTouchDevice ? 'none' : 'translateZ(20px)' }}
+        >
           <motion.h3
-            className="font-semibold text-lg mb-2"
-            style={{ transform: 'translateZ(10px)' }}
-            whileHover={{ scale: 1.05 }}
+            className="font-semibold text-base md:text-lg mb-2"
+            style={{ transform: isTouchDevice ? 'none' : 'translateZ(10px)' }}
+            whileHover={isTouchDevice ? {} : { scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           >
             {project.title}
           </motion.h3>
           <motion.p
-            className="text-muted mb-4"
-            style={{ transform: 'translateZ(5px)' }}
+            className="text-muted mb-4 text-sm md:text-base"
+            style={{ transform: isTouchDevice ? 'none' : 'translateZ(5px)' }}
             initial={{ opacity: 0.8 }}
             whileHover={{ opacity: 1 }}
           >
@@ -137,10 +141,14 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
           </motion.p>
 
           <motion.div
-            className="flex gap-3"
-            style={{ transform: 'translateZ(15px)' }}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+            className={`flex gap-2 md:gap-3 ${!project.href || !project.github ? 'flex-col' : 'flex-row'}`}
+            style={{ transform: isTouchDevice ? 'none' : 'translateZ(15px)' }}
+            initial={isTouchDevice ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            animate={
+              isTouchDevice
+                ? { y: 0, opacity: 1 }
+                : { y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }
+            }
             transition={{
               duration: 0.3,
               delay: isHovered ? 0.1 : 0,
@@ -152,9 +160,9 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="project-button-3d flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg text-sm font-medium transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:scale-105 hover:shadow-lg"
-                style={{ transform: 'translateZ(20px)' }}
-                whileHover={{ scale: 1.05, y: -2 }}
+                className={`project-button-3d flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg text-sm font-medium transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:scale-105 hover:shadow-lg min-h-touch ${!project.href || !project.github ? 'w-full' : 'flex-1'}`}
+                style={{ transform: isTouchDevice ? 'none' : 'translateZ(20px)' }}
+                whileHover={isTouchDevice ? {} : { scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
@@ -167,9 +175,9 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="project-button-3d flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg text-sm font-medium transition-all duration-300 hover:from-gray-800 hover:to-gray-900 hover:scale-105 hover:shadow-lg"
-                style={{ transform: 'translateZ(20px)' }}
-                whileHover={{ scale: 1.05, y: -2 }}
+                className={`project-button-3d flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg text-sm font-medium transition-all duration-300 hover:from-gray-800 hover:to-gray-900 hover:scale-105 hover:shadow-lg min-h-touch ${!project.href || !project.github ? 'w-full' : 'flex-1'}`}
+                style={{ transform: isTouchDevice ? 'none' : 'translateZ(20px)' }}
+                whileHover={isTouchDevice ? {} : { scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
