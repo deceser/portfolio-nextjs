@@ -12,30 +12,20 @@ export function About() {
             </h2>
             <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted leading-relaxed">
               <p>
-                I specialize in creating modern web applications using React, Next.js and
-                TypeScript. My experience includes developing high-performance user interfaces and
-                integrating with various APIs.
+                Hey there! I'm a JavaScript Developer with 3 years of getting my hands dirty in the
+                world of coding. My journey's been all about turning cool ideas into even cooler web
+                apps that don't just work great but look and feel awesome too.
               </p>
               <p>
-                I pay special attention to accessibility, performance and modern standards of web
-                development. I constantly study new technologies and apply them in projects to
-                create better user experience.
+                I've got a knack for making websites that adapt like a dream, no matter what screen
+                they're on, ensuring users get the best experience. And when it comes to talking
+                shop or anything else, you can bet on my English skills to keep the conversation
+                flowing smoothly.
               </p>
-            </div>
-
-            <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
-              <div className="glass-card p-5 md:p-6 text-center">
-                <div className="text-2xl md:text-3xl font-bold gradient-text mb-2">3+</div>
-                <div className="text-sm md:text-base text-muted">Years of Experience</div>
-              </div>
-              <div className="glass-card p-5 md:p-6 text-center">
-                <div className="text-2xl md:text-3xl font-bold gradient-text mb-2">20+</div>
-                <div className="text-sm md:text-base text-muted">Projects</div>
-              </div>
-              <div className="glass-card p-5 md:p-6 text-center">
-                <div className="text-2xl md:text-3xl font-bold gradient-text mb-2">100%</div>
-                <div className="text-sm md:text-base text-muted">Quality</div>
-              </div>
+              <p>
+                So, if you're looking for someone who's all in on making your project a hit without
+                running around in circles, I'm your guy!
+              </p>
             </div>
           </div>
         </MotionFade>

@@ -6,19 +6,74 @@ import {
   SiJavascript,
   SiTailwindcss,
   SiNodedotjs,
-  SiGit,
-  SiFigma,
+  SiVuedotjs,
+  SiNuxtdotjs,
+  SiHtml5,
+  SiCss3,
+  SiBootstrap,
+  SiMui,
+  SiMongodb,
+  SiMysql,
+  SiPostgresql,
+  SiFirebase,
+  SiSupabase,
+  SiVercel,
+  SiExpress,
+  SiFramer,
+  SiRedux,
 } from 'react-icons/si';
+import { GiBearHead } from 'react-icons/gi';
+import { TbApi } from 'react-icons/tb';
+import { MdDataObject } from 'react-icons/md';
+import { RiKey2Line } from 'react-icons/ri';
 
-const skills = [
-  { name: 'React', level: 95, icon: SiReact },
-  { name: 'Next.js', level: 90, icon: SiNextdotjs },
-  { name: 'TypeScript', level: 88, icon: SiTypescript },
-  { name: 'JavaScript', level: 92, icon: SiJavascript },
-  { name: 'Tailwind CSS', level: 85, icon: SiTailwindcss },
-  { name: 'Node.js', level: 75, icon: SiNodedotjs },
-  { name: 'Git', level: 80, icon: SiGit },
-  { name: 'Figma', level: 70, icon: SiFigma },
+const groups = [
+  {
+    title: 'Front-end',
+    items: [
+      { name: 'JavaScript', icon: SiJavascript },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'React', icon: SiReact },
+      { name: 'Next.js', icon: SiNextdotjs },
+      { name: 'Vue', icon: SiVuedotjs },
+      { name: 'Redux', icon: SiRedux },
+      { name: 'Zustand', icon: GiBearHead },
+      { name: 'HTML5', icon: SiHtml5 },
+      { name: 'CSS3', icon: SiCss3 },
+      { name: 'MUI', icon: SiMui },
+      { name: 'Bootstrap', icon: SiBootstrap },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'Framer Motion', icon: SiFramer },
+    ],
+  },
+  {
+    title: 'Mobile',
+    items: [{ name: 'React Native', icon: SiReact }],
+  },
+  {
+    title: 'Back-end',
+    items: [
+      { name: 'Node.js', icon: SiNodedotjs },
+      { name: 'Express', icon: SiExpress },
+      { name: 'REST API', icon: TbApi },
+      { name: 'CRUD', icon: MdDataObject },
+      { name: 'JWT Auth', icon: RiKey2Line },
+    ],
+  },
+  {
+    title: 'Databases & Data stores',
+    items: [
+      { name: 'MySQL', icon: SiMysql },
+      { name: 'PostgreSQL', icon: SiPostgresql },
+      { name: 'MongoDB', icon: SiMongodb },
+      { name: 'Supabase', icon: SiSupabase },
+      { name: 'Firebase', icon: SiFirebase },
+    ],
+  },
+  {
+    title: 'Deployment',
+    items: [{ name: 'Vercel', icon: SiVercel }],
+  },
 ];
 
 export function Skills() {
@@ -35,35 +90,34 @@ export function Skills() {
               Technologies and tools I work with
             </p>
 
-            <div className="grid grid-cols-3 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
-              {skills.map((skill) => {
-                const IconComponent = skill.icon;
-                return (
-                  <div
-                    key={skill.name}
-                    className="glass-card p-3 md:p-6 text-center group hover:scale-105 transition-transform duration-300"
-                  >
-                    {/* Мобильная версия - только иконки */}
-                    <div className="md:hidden flex flex-col items-center justify-center h-full">
-                      <IconComponent className="text-2xl text-primary" />
-                    </div>
-
-                    {/* Десктопная версия - полная информация */}
-                    <div className="hidden md:block">
-                      <div className="text-xl md:text-2xl font-bold gradient-text mb-2">
-                        {skill.name}
-                      </div>
-                      <div className="w-full bg-glass-border rounded-full h-2 mb-2">
+            <div className="space-y-6 md:space-y-8">
+              {groups.map((group) => (
+                <div key={group.title}>
+                  <h3 className="font-semibold mb-3 md:mb-4">{group.title}</h3>
+                  <div className="flex flex-wrap gap-3 md:gap-4">
+                    {group.items.map((skill) => {
+                      const IconComponent = skill.icon;
+                      return (
                         <div
-                          className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all duration-1000 ease-out"
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
-                      <div className="text-xs md:text-sm text-muted">{skill.level}%</div>
-                    </div>
+                          key={skill.name}
+                          className="glass-card p-3 md:p-6 text-center group hover:scale-105 transition-transform duration-300"
+                        >
+                          <div className="md:hidden flex flex-col items-center justify-center h-full">
+                            <IconComponent className="text-2xl text-primary" />
+                          </div>
+
+                          <div className="hidden md:flex flex-col items-center justify-center">
+                            <IconComponent className="text-3xl text-primary mb-2" />
+                            <div className="text-xl md:text-2xl font-bold gradient-text">
+                              {skill.name}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </MotionFade>
