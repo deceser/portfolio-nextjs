@@ -12,11 +12,13 @@ type DataState = {
   loading: boolean;
   error: string | null;
   fetchProjects: () => Promise<void>;
-  fetchContacts: () => Promise<void>;
   setProjects: (items: Project[]) => void;
+
+  fetchContacts: () => Promise<void>;
+  setContacts: (items: Contact[]) => void;
+
   fetchReviews: () => Promise<void>;
   setReviews: (items: Review[]) => void;
-  setContacts: (items: Contact[]) => void;
 };
 
 // demo: we take local data as "source"

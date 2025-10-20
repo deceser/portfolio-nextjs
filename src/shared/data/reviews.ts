@@ -1,22 +1,22 @@
 export type Review = {
   id: number;
   name: string;
-  position: string;
-  company: string;
+  position?: string;
+  company?: string;
   text: string;
   rating: number;
   url: string;
+  date: string;
 };
 
 export const reviews: Review[] = [
   {
     id: 1,
-    name: 'Anna Petrova',
-    position: 'Product Manager',
-    company: 'TechCorp',
-    text: 'Denis did an excellent job developing our web application. He quickly understands requirements and offers quality solutions.',
+    name: 'DeFi Flutter App',
+    text: 'The developer is highly skilled, understands requirements rapidly, works fast while maximizing quality. Highly recommend!',
     rating: 5,
     url: 'https://www.upwork.com/freelancers/~example1',
+    date: 'Jul 1, 2025 - Oct 9, 2025',
   },
   {
     id: 2,
@@ -26,23 +26,6 @@ export const reviews: Review[] = [
     text: 'Professional approach, attention to detail and excellent communication skills. I recommend him as a reliable developer.',
     rating: 5,
     url: 'https://www.upwork.com/freelancers/~example2',
-  },
-  {
-    id: 3,
-    name: 'Elena Smirnova',
-    position: 'Design Lead',
-    company: 'CreativeStudio',
-    text: 'Working with Denis was very productive. He quickly adapts to changes and always offers optimal solutions.',
-    rating: 5,
-    url: 'https://www.upwork.com/freelancers/~example3',
-  },
-  {
-    id: 4,
-    name: 'Alexey Kozlov',
-    position: 'CTO',
-    company: 'InnovateLab',
-    text: 'High code quality, meeting deadlines and excellent understanding of modern technologies. Very satisfied with the result.',
-    rating: 5,
-    url: 'https://www.upwork.com/freelancers/~example4',
+    date: '2025-01-01',
   },
 ];

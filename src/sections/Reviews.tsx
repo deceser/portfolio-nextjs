@@ -67,9 +67,7 @@ export function Reviews() {
                         <div className="font-semibold text-fg text-sm md:text-base">
                           {review.name}
                         </div>
-                        <div className="text-xs md:text-sm text-muted">
-                          {review.position}, {review.company}
-                        </div>
+                        <div className="text-xs md:text-sm text-muted">{review.date}</div>
                       </div>
                     </a>
                   ))}
