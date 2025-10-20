@@ -1,6 +1,9 @@
 export function ReviewCardSkeleton() {
   return (
-    <div className="flex-shrink-0 w-72 sm:w-80 glass-card-no-shadow p-5 md:p-6 animate-pulse">
+    <div
+      className="flex-shrink-0 w-72 sm:w-80 glass-card-no-shadow p-5 md:p-6 animate-pulse"
+      data-testid="review-skeleton"
+    >
       <div className="flex items-center mb-3 md:mb-4">
         <div className="flex gap-1">
           {[...Array(5)].map((_, i) => (

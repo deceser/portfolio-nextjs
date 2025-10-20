@@ -1,13 +1,22 @@
 import { render, screen } from '@testing-library/react';
-// Zustand: тесты без провайдера темы
 import { Contact } from '@/sections/Contact';
+import { useDataStore } from '@/stores/data';
 
-const renderUI = (ui: React.ReactNode) => render(<>{ui}</>);
+jest.mock('@/stores/data', () => ({
+  useDataStore: jest.fn(),
+}));
 
 describe('Contact', () => {
-  it('renders cards and links', () => {
-    renderUI(<Contact />);
-    expect(screen.getByText('Контакты')).toBeInTheDocument();
-    expect(screen.getByText('Мои проекты и код')).toBeInTheDocument();
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('renders heading and description', () => {
+    (useDataStore as unknown as jest.Mock).mockImplementation((selector) =>
+      selector({ contacts: [], loading: false, fetchContacts: jest.fn() }),
+    );
+    render(<Contact />);
+    expect(screen.getByText('Contact')).toBeInTheDocument();
+    expect(screen.getByText('Contact me through these platforms')).toBeInTheDocument();
   });
 });

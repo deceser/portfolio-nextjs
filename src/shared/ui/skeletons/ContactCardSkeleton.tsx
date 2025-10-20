@@ -1,6 +1,6 @@
 export function ContactCardSkeleton() {
   return (
-    <div className="glass-card p-6 md:p-8 text-center animate-pulse">
+    <div className="glass-card p-6 md:p-8 text-center animate-pulse" data-testid="contact-skeleton">
       <div className="mb-3 md:mb-4 flex justify-center">
         <div className="w-7 h-7 md:w-8 md:h-8 bg-glass-border rounded" />
       </div>

@@ -1,6 +1,6 @@
 export function ProjectCardSkeleton() {
   return (
-    <div className="glass-card-3d overflow-hidden animate-pulse">
+    <div className="glass-card-3d overflow-hidden animate-pulse" data-testid="project-skeleton">
       <div className="aspect-[16/10] w-full bg-glass-border" />
       <div className="p-4 md:p-6">
         <div className="h-6 bg-glass-border rounded-liquid w-3/4 mb-2" />
