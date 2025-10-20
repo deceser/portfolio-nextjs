@@ -1,13 +1,20 @@
 'use client';
 
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
+import { m, useMotionValue, useTransform, animate } from 'framer-motion';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Container } from '@/shared/ui/Container';
-import { ThemeToggle } from '@/features/theme';
 import { Logo } from '@/widgets/layout';
 import { MenuIcon } from '@/shared/icons/MenuIcon';
 import { DragArrowIcon } from '@/shared/icons/DragArrowIcon';
 import { useUIStore } from '@/stores/ui';
+
+const ThemeToggle = dynamic(
+  () => import('@/features/theme/ThemeToggle').then((mod) => ({ default: mod.ThemeToggle })),
+  {
+    ssr: false,
+  },
+);
 
 export function Header() {
   const mobileMenuOpen = useUIStore((s) => s.mobileMenuOpen);
@@ -23,12 +30,12 @@ export function Header() {
 
   return (
     <>
-      <motion.header
+      <m.header
         style={{ height: headerHeight }}
         className="glass-header fixed inset-x-0 top-0 z-50 overflow-hidden"
       >
         <Container>
-          <motion.div
+          <m.div
             style={{ scaleY: contentScaleY, transformOrigin: 'top' }}
             className="flex h-16 items-center justify-between"
           >
@@ -69,7 +76,7 @@ export function Header() {
                 <MenuIcon isOpen={mobileMenuOpen} />
               </button>
             </div>
-          </motion.div>
+          </m.div>
         </Container>
 
         {mobileMenuOpen && (
@@ -100,25 +107,29 @@ export function Header() {
           </div>
         )}
 
-        <motion.div style={{ opacity: contentOpacity }} className="text-center pt-4">
+        <m.div style={{ opacity: contentOpacity }} className="text-center pt-4">
           <p className="text-sm">Hello World</p>
-        </motion.div>
-      </motion.header>
+        </m.div>
+      </m.header>
 
-      <motion.div
-        drag="y"
-        dragDirectionLock
-        dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={0.2}
-        dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
-        onDrag={(_, info) => dragY.set(Math.max(0, Math.min(150, info.offset.y)))}
-        onDragEnd={() => animate(dragY, 0, { type: 'spring', stiffness: 500, damping: 15 })}
-        whileDrag={{ cursor: 'grabbing' }}
+      <m.div
         style={{ top: arrowTop }}
-        className="fixed inset-x-0 z-50 flex justify-center py-2 cursor-grab"
+        className="fixed inset-x-0 z-50 flex justify-center py-2 pointer-events-none"
       >
-        <DragArrowIcon className="w-5 h-5 opacity-50" />
-      </motion.div>
+        <m.div
+          drag="y"
+          dragDirectionLock
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={0.2}
+          dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
+          onDrag={(_, info) => dragY.set(Math.max(0, Math.min(150, info.offset.y)))}
+          onDragEnd={() => animate(dragY, 0, { type: 'spring', stiffness: 500, damping: 15 })}
+          whileDrag={{ cursor: 'grabbing' }}
+          className="cursor-grab pointer-events-auto"
+        >
+          <DragArrowIcon className="w-5 h-5 opacity-50" />
+        </m.div>
+      </m.div>
     </>
   );
 }

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Header, Footer, MainWrapper } from '@/widgets/layout';
-import { MatrixEasterEgg } from '@/widgets/matrix';
 import { TitleAndFaviconController } from '@/controllers/TitleAndFaviconController';
 import { ThemeEffect } from '../features/theme';
+import { FramerProvider } from '@/shared/ui';
+import { MatrixEasterEggLazy } from '@/widgets/matrix/MatrixEasterEggLazy';
 
 export const metadata: Metadata = {
   title: 'Denys Bezverkhyi',
@@ -27,12 +28,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <ThemeEffect />
-        <MatrixEasterEgg>
-          <TitleAndFaviconController />
-          <Header />
-          <MainWrapper>{children}</MainWrapper>
-          <Footer />
-        </MatrixEasterEgg>
+        <FramerProvider>
+          <MatrixEasterEggLazy>
+            <TitleAndFaviconController />
+            <Header />
+            <MainWrapper>{children}</MainWrapper>
+            <Footer />
+          </MatrixEasterEggLazy>
+        </FramerProvider>
       </body>
     </html>
   );

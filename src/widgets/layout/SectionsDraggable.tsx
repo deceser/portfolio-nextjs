@@ -1,13 +1,31 @@
 'use client';
 
-import { motion, useDragControls } from 'framer-motion';
-import { useRef } from 'react';
-import { Hero } from '@/sections/Hero';
-import { About } from '@/sections/About';
-import { Skills } from '@/sections/Skills';
-import { Projects } from '@/sections/Projects';
-import { Reviews } from '@/sections/Reviews';
-import { Contact } from '@/sections/Contact';
+import { m, useDragControls } from 'framer-motion';
+import { useRef, Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import { SectionSkeleton, ProjectsSkeleton, ReviewsSkeleton, ContactsSkeleton } from '@/shared/ui';
+
+const Hero = dynamic(() => import('@/sections/Hero').then((mod) => ({ default: mod.Hero })), {
+  loading: () => <SectionSkeleton />,
+});
+const About = dynamic(() => import('@/sections/About').then((mod) => ({ default: mod.About })), {
+  loading: () => <SectionSkeleton />,
+});
+const Skills = dynamic(() => import('@/sections/Skills').then((mod) => ({ default: mod.Skills })), {
+  loading: () => <SectionSkeleton />,
+});
+const Projects = dynamic(
+  () => import('@/sections/Projects').then((mod) => ({ default: mod.Projects })),
+  { loading: () => <ProjectsSkeleton /> },
+);
+const Reviews = dynamic(
+  () => import('@/sections/Reviews').then((mod) => ({ default: mod.Reviews })),
+  { loading: () => <ReviewsSkeleton /> },
+);
+const Contact = dynamic(
+  () => import('@/sections/Contact').then((mod) => ({ default: mod.Contact })),
+  { loading: () => <ContactsSkeleton /> },
+);
 
 const DraggableSection = ({
   children,
@@ -34,7 +52,7 @@ const DraggableSection = ({
   };
 
   return (
-    <motion.div
+    <m.div
       ref={sectionRef}
       drag
       dragControls={controls}
@@ -47,7 +65,7 @@ const DraggableSection = ({
       className="[&_.glass-card]:cursor-grab [&_.glass-card]:active:cursor-grabbing"
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -55,25 +73,37 @@ export const SectionsDraggable = () => {
   const constraintsRef = useRef<HTMLDivElement>(null);
 
   return (
-    <motion.div ref={constraintsRef}>
+    <m.div ref={constraintsRef}>
       <DraggableSection constraintsRef={constraintsRef}>
-        <Hero />
+        <Suspense fallback={<SectionSkeleton />}>
+          <Hero />
+        </Suspense>
       </DraggableSection>
       <DraggableSection constraintsRef={constraintsRef}>
-        <About />
+        <Suspense fallback={<SectionSkeleton />}>
+          <About />
+        </Suspense>
       </DraggableSection>
       <DraggableSection constraintsRef={constraintsRef}>
-        <Skills />
+        <Suspense fallback={<SectionSkeleton />}>
+          <Skills />
+        </Suspense>
       </DraggableSection>
       <DraggableSection constraintsRef={constraintsRef}>
-        <Projects />
+        <Suspense fallback={<ProjectsSkeleton />}>
+          <Projects />
+        </Suspense>
       </DraggableSection>
       <DraggableSection constraintsRef={constraintsRef}>
-        <Reviews />
+        <Suspense fallback={<ReviewsSkeleton />}>
+          <Reviews />
+        </Suspense>
       </DraggableSection>
       <DraggableSection constraintsRef={constraintsRef}>
-        <Contact />
+        <Suspense fallback={<ContactsSkeleton />}>
+          <Contact />
+        </Suspense>
       </DraggableSection>
-    </motion.div>
+    </m.div>
   );
 };

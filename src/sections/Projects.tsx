@@ -2,10 +2,8 @@
 
 import { useEffect } from 'react';
 import { useDataStore } from '@/stores/data';
-
 import { ProjectCard3D } from '@/widgets/projects/ProjectCard3D';
-
-import { Container, MotionFade, LiquidBackground } from '@/shared/ui';
+import { Container, MotionFade, LiquidBackground, ProjectCardSkeleton } from '@/shared/ui';
 
 export function Projects() {
   const projects = useDataStore((s) => s.projects);
@@ -16,6 +14,7 @@ export function Projects() {
     if (projects.length === 0) fetchProjects();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <section id="projects" className="py-8 md:py-20 xl:py-24 relative">
       <LiquidBackground className="opacity-30" />
@@ -29,27 +28,35 @@ export function Projects() {
               My latest projects and work
             </p>
 
-            <div
-              id="stacking-cards-container"
-              className="scrollbar-hide md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0"
-            >
-              {projects.map((project, index) => (
-                <div
-                  key={project.id}
-                  className="stacking-card-wrapper md:w-auto"
-                  style={
-                    {
-                      '--index': index + 1,
-                      '--reverse-index': projects.length - index,
-                    } as React.CSSProperties
-                  }
-                >
-                  <div className="stacking-card-content">
-                    <ProjectCard3D project={project} />
+            {loading ? (
+              <div className="md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-8 space-y-4 md:space-y-0">
+                {[...Array(6)].map((_, i) => (
+                  <ProjectCardSkeleton key={i} />
+                ))}
+              </div>
+            ) : (
+              <div
+                id="stacking-cards-container"
+                className="scrollbar-hide md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0"
+              >
+                {projects.map((project, index) => (
+                  <div
+                    key={project.id}
+                    className="stacking-card-wrapper md:w-auto"
+                    style={
+                      {
+                        '--index': index + 1,
+                        '--reverse-index': projects.length - index,
+                      } as React.CSSProperties
+                    }
+                  >
+                    <div className="stacking-card-content">
+                      <ProjectCard3D project={project} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </MotionFade>
       </Container>

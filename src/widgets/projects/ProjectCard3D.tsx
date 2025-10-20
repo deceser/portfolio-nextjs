@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { m, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLinkIcon } from '@/shared/icons/ExternalLinkIcon';
 import { GitHubIcon } from '@/shared/icons/GitHubIcon';
 import type { Project } from '@/shared/data/projects';
@@ -61,7 +61,7 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
   };
 
   return (
-    <motion.div
+    <m.div
       ref={cardRef}
       className="group perspective-1000"
       onMouseMove={handleMouseMove}
@@ -75,7 +75,7 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <motion.div
+      <m.div
         className={`glass-card-3d overflow-hidden transition-all duration-500 ease-out ${isTouchDevice ? 'shadow-none' : ''}`}
         style={{
           x: isTouchDevice ? 0 : springX,
@@ -87,7 +87,7 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
         whileHover={isTouchDevice ? {} : { scale: 1.02 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
-        <motion.div
+        <m.div
           className="relative aspect-[16/10] w-full overflow-hidden"
           style={{ transform: 'translateZ(30px)' }}
         >
@@ -95,9 +95,10 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
             src={project.image}
             alt={project.title}
             fill
+            loading="lazy"
             className="object-cover transition duration-700 group-hover:scale-110"
           />
-          <motion.div
+          <m.div
             className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
             initial={{ opacity: 0 }}
             whileHover={{ opacity: 1 }}
@@ -105,42 +106,42 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
             style={{ transform: 'translateZ(40px)' }}
           />
 
-          <motion.div
+          <m.div
             className="absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full"
             animate={{ scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
             style={{ transform: 'translateZ(50px)' }}
           />
-          <motion.div
+          <m.div
             className="absolute bottom-4 left-4 w-1 h-1 bg-white/40 rounded-full"
             animate={{ scale: [1, 2, 1], opacity: [0.4, 0.8, 0.4] }}
             transition={{ duration: 3, repeat: Infinity, delay: 1 }}
             style={{ transform: 'translateZ(50px)' }}
           />
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="p-4 md:p-6 relative"
           style={{ transform: isTouchDevice ? 'none' : 'translateZ(20px)' }}
         >
-          <motion.h3
+          <m.h3
             className="font-semibold text-base md:text-lg mb-2"
             style={{ transform: isTouchDevice ? 'none' : 'translateZ(10px)' }}
             whileHover={isTouchDevice ? {} : { scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           >
             {project.title}
-          </motion.h3>
-          <motion.p
+          </m.h3>
+          <m.p
             className="text-muted mb-4 text-sm md:text-base"
             style={{ transform: isTouchDevice ? 'none' : 'translateZ(5px)' }}
             initial={{ opacity: 0.8 }}
             whileHover={{ opacity: 1 }}
           >
             {project.description}
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             className={`flex gap-2 md:gap-3 ${!project.href || !project.github ? 'flex-col' : 'flex-row'}`}
             style={{ transform: isTouchDevice ? 'none' : 'translateZ(15px)' }}
             initial={isTouchDevice ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
@@ -156,7 +157,7 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
             }}
           >
             {project.href && (
-              <motion.a
+              <m.a
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -168,10 +169,10 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
               >
                 <ExternalLinkIcon className="w-4 h-4" />
                 Проект
-              </motion.a>
+              </m.a>
             )}
             {project.github && (
-              <motion.a
+              <m.a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -183,20 +184,20 @@ export function ProjectCard3D({ project }: ProjectCard3DProps) {
               >
                 <GitHubIcon className="w-4 h-4" />
                 GitHub
-              </motion.a>
+              </m.a>
             )}
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{ transform: 'translateZ(50px)' }}
         />
-        <motion.div
+        <m.div
           className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{ transform: 'translateZ(60px)' }}
         />
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }

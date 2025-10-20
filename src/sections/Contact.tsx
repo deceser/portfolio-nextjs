@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, MotionFade, LiquidBackground } from '@/shared/ui';
+import { Container, MotionFade, LiquidBackground, ContactCardSkeleton } from '@/shared/ui';
 import { useDataStore } from '@/stores/data';
 import { useEffect } from 'react';
 
@@ -27,23 +27,31 @@ export function Contact() {
               Contact me through these platforms
             </p>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 md:gap-6">
-              {contacts.map((contact) => (
-                <a
-                  key={contact.id}
-                  href={contact.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-card p-6 md:p-8 text-center group hover:scale-105 transition-all duration-300 min-h-touch"
-                >
-                  <div className={`${contact.color} mb-3 md:mb-4 flex justify-center`}>
-                    <contact.icon className="w-7 h-7 md:w-8 md:h-8" />
-                  </div>
-                  <h3 className="text-lg md:text-xl font-semibold mb-2">{contact.name}</h3>
-                  <p className="text-sm md:text-base text-muted">{contact.description}</p>
-                </a>
-              ))}
-            </div>
+            {loading ? (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 md:gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <ContactCardSkeleton key={i} />
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 md:gap-6">
+                {contacts.map((contact) => (
+                  <a
+                    key={contact.id}
+                    href={contact.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-card p-6 md:p-8 text-center group hover:scale-105 transition-all duration-300 min-h-touch"
+                  >
+                    <div className={`${contact.color} mb-3 md:mb-4 flex justify-center`}>
+                      <contact.icon className="w-7 h-7 md:w-8 md:h-8" />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold mb-2">{contact.name}</h3>
+                    <p className="text-sm md:text-base text-muted">{contact.description}</p>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </MotionFade>
       </Container>
