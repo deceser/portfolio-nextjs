@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export function Logo() {
   return (
     <div className="relative">
@@ -7,10 +9,12 @@ export function Logo() {
         aria-label="Matrix trigger"
         className="peer h-24 w-24 rounded-full overflow-hidden bg-transparent ring-0"
       >
-        <img
+        <Image
           src="/logo.png"
           alt="Site icon"
-          className="h-full w-full object-contain  cursor-pointer"
+          width={96}
+          height={96}
+          className="h-full w-full object-contain cursor-pointer"
           draggable={false}
         />
       </button>

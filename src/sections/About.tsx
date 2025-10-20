@@ -12,19 +12,19 @@ export function About() {
             </h2>
             <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted leading-relaxed">
               <p>
-                Hey there! I'm a JavaScript Developer with 3 years of getting my hands dirty in the
-                world of coding. My journey's been all about turning cool ideas into even cooler web
-                apps that don't just work great but look and feel awesome too.
+                Hey there! I&apos;m a JavaScript Developer with 3 years of getting my hands dirty in
+                the world of coding. My journey&apos;s been all about turning cool ideas into even
+                cooler web apps that don&apos;t just work great but look and feel awesome too.
               </p>
               <p>
-                I've got a knack for making websites that adapt like a dream, no matter what screen
-                they're on, ensuring users get the best experience. And when it comes to talking
-                shop or anything else, you can bet on my English skills to keep the conversation
-                flowing smoothly.
+                I&apos;ve got a knack for making websites that adapt like a dream, no matter what
+                screen they&apos;re on, ensuring users get the best experience. And when it comes to
+                talking shop or anything else, you can bet on my English skills to keep the
+                conversation flowing smoothly.
               </p>
               <p>
-                So, if you're looking for someone who's all in on making your project a hit without
-                running around in circles, I'm your guy!
+                So, if you&apos;re looking for someone who&apos;s all in on making your project a
+                hit without running around in circles, I&apos;m your guy!
               </p>
             </div>
           </div>

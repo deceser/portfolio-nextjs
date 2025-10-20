@@ -68,7 +68,7 @@ export function Reviews() {
                           </div>
                         </div>
                         <p className="text-muted mb-3 md:mb-4 italic text-sm md:text-base">
-                          "{review.text}"
+                          &quot;{review.text}&quot;
                         </p>
                         <div className="border-t border-glass-border pt-3 md:pt-4">
                           <div className="font-semibold text-fg text-sm md:text-base">
@@ -110,7 +110,7 @@ export function Reviews() {
                           </div>
                         </div>
                         <p className="text-muted mb-3 md:mb-4 italic text-sm md:text-base">
-                          "{review.text}"
+                          &quot;{review.text}&quot;
                         </p>
                         <div className="border-t border-glass-border pt-3 md:pt-4">
                           <div className="font-semibold text-fg text-sm md:text-base">

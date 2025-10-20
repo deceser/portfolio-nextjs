@@ -53,7 +53,7 @@ export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
         logo.removeEventListener('click', handleLogoClick);
       }
     };
-  }, [keySequence]);
+  }, [keySequence, openModal]);
 
   useEffect(() => {
     if (isMatrixMode) {
@@ -69,7 +69,7 @@ export default function MatrixEasterEgg({ children }: MatrixEasterEggProps) {
         document.body.style.overflow = '';
       };
     }
-  }, [isMatrixMode]);
+  }, [isMatrixMode, closeModal]);
 
   return (
     <>
