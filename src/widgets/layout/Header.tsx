@@ -1,6 +1,7 @@
 'use client';
 
 import { m, useMotionValue, useTransform, animate } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Container } from '@/shared/ui/Container';
@@ -17,6 +18,7 @@ const ThemeToggle = dynamic(
 );
 
 export function Header() {
+  const [isDesktop, setIsDesktop] = useState(false);
   const mobileMenuOpen = useUIStore((s) => s.mobileMenuOpen);
   const toggleMobileMenu = useUIStore((s) => s.toggleMobileMenu);
   const setMobileMenuOpen = useUIStore((s) => s.setMobileMenuOpen);
@@ -26,17 +28,24 @@ export function Header() {
   const contentOpacity = useTransform(dragY, [0, 150], [0, 1]);
   const contentScaleY = useTransform(dragY, [0, 150], [1, 1.5]);
 
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
   const handleLinkClick = () => setMobileMenuOpen(false);
 
   return (
     <>
       <m.header
-        style={{ height: headerHeight }}
-        className="glass-header fixed inset-x-0 top-0 z-50 overflow-hidden"
+        className="glass-header fixed inset-x-0 top-0 z-50 md:overflow-hidden"
+        style={{ height: isDesktop ? headerHeight : 'auto' }}
       >
         <Container>
           <m.div
-            style={{ scaleY: contentScaleY, transformOrigin: 'top' }}
+            style={{ scaleY: isDesktop ? contentScaleY : 1, transformOrigin: 'top' }}
             className="flex h-16 items-center justify-between"
           >
             <Link href="#hero" data-logo>
@@ -107,14 +116,16 @@ export function Header() {
           </div>
         )}
 
-        <m.div style={{ opacity: contentOpacity }} className="text-center pt-4">
-          <p className="text-sm">Hello World</p>
-        </m.div>
+        {isDesktop && (
+          <m.div style={{ opacity: contentOpacity }} className="text-center pt-4">
+            <p className="text-sm">Hello World</p>
+          </m.div>
+        )}
       </m.header>
 
       <m.div
         style={{ top: arrowTop }}
-        className="fixed inset-x-0 z-50 flex justify-center py-2 pointer-events-none"
+        className="fixed inset-x-0 z-50 hidden md:flex justify-center py-2 pointer-events-none"
       >
         <m.div
           drag="y"
