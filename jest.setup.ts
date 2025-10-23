@@ -49,6 +49,16 @@ class MockIntersectionObserver implements IntersectionObserver {
 global.IntersectionObserver = MockIntersectionObserver as any;
 window.IntersectionObserver = MockIntersectionObserver as any;
 
+// Mock ResizeObserver
+class MockResizeObserver implements ResizeObserver {
+  constructor(_callback: ResizeObserverCallback) {}
+  observe(): void {}
+  unobserve(): void {}
+  disconnect(): void {}
+}
+global.ResizeObserver = MockResizeObserver as any;
+window.ResizeObserver = MockResizeObserver as any;
+
 // Mock HTMLCanvasElement
 HTMLCanvasElement.prototype.getContext = jest.fn(() => ({
   fillStyle: '',
