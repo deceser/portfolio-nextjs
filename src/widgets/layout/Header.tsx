@@ -136,9 +136,21 @@ export function Header() {
           onDrag={(_, info) => dragY.set(Math.max(0, Math.min(150, info.offset.y)))}
           onDragEnd={() => animate(dragY, 0, { type: 'spring', stiffness: 500, damping: 15 })}
           whileDrag={{ cursor: 'grabbing' }}
-          className="cursor-grab pointer-events-auto"
+          className="cursor-grab pointer-events-auto flex flex-col items-center gap-1"
         >
-          <DragArrowIcon className="w-5 h-5 opacity-50" />
+          <m.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <DragArrowIcon className="w-5 h-5 opacity-50" />
+          </m.div>
+          <m.span
+            animate={{ opacity: [0.4, 0.7, 0.4] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="text-xs text-muted select-none"
+          >
+            Drag down
+          </m.span>
         </m.div>
       </m.div>
     </>
