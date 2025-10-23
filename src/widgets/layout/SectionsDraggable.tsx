@@ -1,7 +1,7 @@
 'use client';
 
 import { m, useDragControls } from 'framer-motion';
-import { useRef, Suspense } from 'react';
+import { useRef, Suspense, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { SectionSkeleton, ProjectsSkeleton, ReviewsSkeleton, ContactsSkeleton } from '@/shared/ui';
 
@@ -30,15 +30,18 @@ const Contact = dynamic(
 const DraggableSection = ({
   children,
   constraintsRef,
+  isDragDisabled = false,
 }: {
   children: React.ReactNode;
   constraintsRef: React.RefObject<HTMLDivElement | null>;
+  isDragDisabled?: boolean;
 }) => {
   const controls = useDragControls();
   const sectionRef = useRef<HTMLDivElement>(null);
   let pressTimer: ReturnType<typeof setTimeout> | null = null;
 
   const onDown = (e: React.PointerEvent) => {
+    if (isDragDisabled) return;
     const target = e.target as HTMLElement;
     const glassCard = target.closest('.glass-card');
     if (!glassCard) return;
@@ -54,7 +57,7 @@ const DraggableSection = ({
   return (
     <m.div
       ref={sectionRef}
-      drag
+      drag={!isDragDisabled}
       dragControls={controls}
       dragListener={false}
       dragElastic={0}
@@ -62,7 +65,9 @@ const DraggableSection = ({
       onPointerDown={onDown}
       onPointerUp={onUpOrLeave}
       onPointerLeave={onUpOrLeave}
-      className="[&_.glass-card]:cursor-grab [&_.glass-card]:active:cursor-grabbing"
+      className={
+        isDragDisabled ? '' : '[&_.glass-card]:cursor-grab [&_.glass-card]:active:cursor-grabbing'
+      }
     >
       {children}
     </m.div>
@@ -71,12 +76,13 @@ const DraggableSection = ({
 
 export const SectionsDraggable = () => {
   const constraintsRef = useRef<HTMLDivElement>(null);
+  const [isHeroInteracting, setIsHeroInteracting] = useState(false);
 
   return (
     <m.div ref={constraintsRef}>
-      <DraggableSection constraintsRef={constraintsRef}>
+      <DraggableSection constraintsRef={constraintsRef} isDragDisabled={isHeroInteracting}>
         <Suspense fallback={<SectionSkeleton />}>
-          <Hero />
+          <Hero onInteractionChange={setIsHeroInteracting} />
         </Suspense>
       </DraggableSection>
       <DraggableSection constraintsRef={constraintsRef}>
